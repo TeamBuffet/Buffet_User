@@ -74,7 +74,7 @@
                             android:layout_weight="0.4"
                             android:fontFamily="Arial"
                             android:text="@string/login_slogan_1"
-                            android:textColor="#b3b3b3"
+                            android:textColor="@color/black"
                             android:textSize="16sp" />
 
                     </LinearLayout>
@@ -104,7 +104,7 @@
                             android:layout_weight="0.4"
                             android:fontFamily="Arial"
                             android:text="@string/login_slogan_1"
-                            android:textColor="#b3b3b3"
+                            android:textColor="@color/black"
                             android:textSize="16sp" />
 
                     </LinearLayout>
@@ -135,7 +135,7 @@
                             android:layout_weight="0.4"
                             android:fontFamily="c"
                             android:text="@string/login_slogan_1"
-                            android:textColor="#b3b3b3"
+                            android:textColor="@color/black"
                             android:textSize="16sp" />
 
                     </LinearLayout>

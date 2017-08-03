@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -28,14 +29,16 @@ public class LoginChooserActivity extends AppCompatActivity implements ITrueCall
     TrueButton trueButton;
     private ImageView imgCover;
     private ImageView imgLogo;
+    private Button btnLoginBuffet;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_chooser);
         trueButton = ((TrueButton) findViewById(R.id.com_truecaller_android_sdk_truebutton));
-        imgLogo=(ImageView)findViewById(R.id.imgLogo);
+        imgLogo = (ImageView) findViewById(R.id.imgLogo);
         imgCover = (ImageView) findViewById(R.id.imgCover);
+        btnLoginBuffet = (Button) findViewById(R.id.btnLogin);
         Picasso.with(LoginChooserActivity.this).load("http://ilovepapers.com/wp-content/uploads/papers.co-mv40-food-salad-instagram-hunger-city-life-6-wallpaper.jpg").into(imgCover);
         boolean usable = trueButton.isUsable();
         if (usable) {
@@ -49,7 +52,16 @@ public class LoginChooserActivity extends AppCompatActivity implements ITrueCall
         getWindow().getDecorView().setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+
+        btnLoginBuffet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(LoginChooserActivity.this,LoginActivity_Buffet.class);
+                startActivity(intent);
+            }
+        });
     }
+
 
     @Override
     public void onSuccesProfileShared(@NonNull TrueProfile trueProfile) {
