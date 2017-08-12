@@ -19,6 +19,7 @@
         </activity>
         <activity android:name=".LoginChooserActivity" />
         <activity android:name=".LoginActivity_Buffet" />
+        <activity android:name=".FillProfileDetailsActivity" />
 
         <meta-data
             android:name="com.truecaller.android.sdk.PartnerKey"

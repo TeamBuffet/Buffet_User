@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "67177402940",
+    "firebase_url": "https://buffetuser.firebaseio.com",
+    "project_id": "buffetuser",
+    "storage_bucket": "buffetuser.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:67177402940:android:652bd13782f9b3bd",
+        "android_client_info": {
+          "package_name": "com.buffet_user"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "67177402940-2e4bb53mp8aalo0vnqqpc060mpmhlpb1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_lo3C6ZCn2RNPxB06_HxKDf4s3joY4pU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">Buffet</string>
     <string name="partnerKey">fpnnD433064e2a25748298aff654dde51a352</string>
-    <string name="login_slogan_1">View <b>menus</b>, <b>photos</b>, and <b>reviews</b> for foods in our buffet</string>
-    <string name="login_slogan_2">View <b>menus</b>, <b>photos</b>, and <b>reviews</b> for foods in our buffet</string>
-    <string name="login_slogan_3">View <b>menus</b>, <b>photos</b>, and <b>reviews</b> for foods in our buffet</string>
+    <string name="login_slogan_1">View <b>menus</b>, <b>photos</b>, and <b>reviews</b> for foods</string>
+    <string name="login_slogan_2">Choose <b>Snacks</b>, <b>Foods</b> in the most effective way</string>
+    <string name="login_slogan_3">Pay <b>bills</b> instantly using <b>secure</b> payment gateway</string>
+    <string name="app_logo"><b>Buffet</b>\n Chooses your next lunch</string>
 
 </resources>

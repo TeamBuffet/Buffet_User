@@ -3,12 +3,15 @@
     xmlns:truesdk="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/tools"
     android:background="@color/grey"
     android:orientation="vertical">
 
     <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nsv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:layout_above="@+id/txtAds">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -28,15 +31,20 @@
                     android:scaleType="centerCrop"
                     android:src="@color/white" />
 
-                <ImageView
+
+                <info.abdolahi.CircularMusicProgressBar
                     android:id="@+id/imgLogo"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:layout_below="@+id/imgCover"
                     android:layout_centerHorizontal="true"
+                    android:src="@drawable/buffet"
+                    app:scaleType="fitCenter"
                     android:layout_marginTop="-40dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/logo" />
+                    android:layout_below="@id/imgCover"
+                    app:border_color="@color/white"
+                    app:border_width="2dp"
+                    app:centercircle_diammterer="1"
+                    app:draw_anticlockwise="false"/>
 
 
                 <LinearLayout
@@ -47,13 +55,13 @@
                     android:layout_marginTop="5dp"
                     android:orientation="vertical"
                     android:padding="5dp"
-                    android:weightSum="1">
+                    android:weightSum="1.5">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginTop="5dp"
-                        android:layout_weight="0.25"
+                        android:layout_weight="0.5"
                         android:orientation="horizontal"
                         android:weightSum="1">
 
@@ -83,7 +91,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginTop="5dp"
-                        android:layout_weight="0.25"
+                        android:layout_weight="0.5"
                         android:orientation="horizontal"
                         android:weightSum="1">
 
@@ -103,7 +111,7 @@
                             android:layout_marginLeft="15dp"
                             android:layout_weight="0.4"
                             android:fontFamily="Arial"
-                            android:text="@string/login_slogan_1"
+                            android:text="@string/login_slogan_2"
                             android:textColor="@color/black"
                             android:textSize="16sp" />
 
@@ -112,9 +120,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginBottom="15dp"
                         android:layout_marginTop="5dp"
-                        android:layout_weight="0.25"
+                        android:layout_weight="0.5"
                         android:orientation="horizontal"
                         android:weightSum="1">
 
@@ -133,13 +140,12 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
                             android:layout_weight="0.4"
-                            android:fontFamily="c"
-                            android:text="@string/login_slogan_1"
+                            android:fontFamily="Arial"
+                            android:text="@string/login_slogan_3"
                             android:textColor="@color/black"
                             android:textSize="16sp" />
 
                     </LinearLayout>
-
 
                 </LinearLayout>
 
@@ -153,7 +159,7 @@
                 android:layout_below="@+id/rlTop"
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:background="@color/white"
                 android:elevation="15dp"
                 android:fontFamily="cursive"
