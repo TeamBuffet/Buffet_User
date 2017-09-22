@@ -8,4 +8,13 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <style name="AppThemeFemale" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimaryFemale</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkFemale</item>
+        <item name="colorAccent">@color/colorAccentFemale</item>
+    </style>
+
+
 </resources>

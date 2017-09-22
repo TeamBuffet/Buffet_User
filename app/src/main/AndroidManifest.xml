@@ -3,6 +3,9 @@
     package="com.buffet_user">
 
     <uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,20 +13,34 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.buffet_user.SplashActivity">
+        <activity android:name=".activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginChooserActivity" />
-        <activity android:name=".LoginActivity_Buffet" />
-        <activity android:name=".FillProfileDetailsActivity" />
+        <activity android:name=".activity.LoginChooserActivity" />
+        <activity android:name=".activity.LoginActivity_Buffet" />
+        <activity android:name=".activity.FillProfileDetailsActivity" />
 
         <meta-data
             android:name="com.truecaller.android.sdk.PartnerKey"
             android:value="@string/partnerKey" />
+
+        <activity android:name=".activity.PickUpLocationActivity"></activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_geo_key" />
+
+        <service
+            android:name=".activity.FetchAddressIntentService"
+            android:exported="false" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
 
     </application>
 

@@ -6,6 +6,24 @@
     android:background="@color/white"
     android:orientation="vertical">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/colorPrimaryDark">
+
+        <TextView
+            android:id="@+id/textProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Welcome"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="18sp"/>
+
+
+    </android.support.v7.widget.Toolbar>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -24,7 +42,20 @@
             app:centercircle_diammterer="1"
             app:draw_anticlockwise="false"
             app:progress_color="@color/colorPrimaryDark"
-            app:progress_startAngle="50" />
+            app:progress_startAngle="47" />
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/profilePicEdit"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignStart="@+id/profilepic"
+            android:layout_alignTop="@+id/profilepic"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="39dp"
+            android:alpha="0.6"
+            android:background="@drawable/ic_add_a_photo_black_24dp"
+            android:padding="30dp"
+            android:scaleType="fitXY" />
 
 
         <com.rengwuxian.materialedittext.MaterialEditText
@@ -36,6 +67,8 @@
             android:hint="Enter Name"
             app:met_autoValidate="true"
             app:met_baseColor="@color/colorPrimaryDark"
+            app:met_floatingLabel="normal"
+            app:met_floatingLabelText="Enter Name"
             app:met_iconPadding="0dp"
             app:met_primaryColor="@color/colorAccent"
             app:met_textColor="@color/colorPrimaryDark"
@@ -50,46 +83,67 @@
             android:hint="Enter Email (Optional)"
             app:met_autoValidate="true"
             app:met_baseColor="@color/colorPrimaryDark"
+            app:met_floatingLabel="normal"
+            app:met_floatingLabelText="Enter Email"
             app:met_iconPadding="0dp"
             app:met_primaryColor="@color/colorAccent"
             app:met_textColor="@color/colorPrimaryDark"
             app:met_underlineColor="@color/colorPrimaryDark" />
 
-        <LinearLayout
-            android:id="@+id/ll"
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/edtDOB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:weightSum="1"
-            android:layout_below="@+id/edtEmail"
-            android:layout_marginTop="20dp">
+            android:layout_below="@id/edtEmail"
+            android:layout_marginTop="20dp"
+            android:hint="Enter DOB"
+            app:met_autoValidate="true"
+            app:met_baseColor="@color/colorPrimaryDark"
+            app:met_floatingLabel="normal"
+            app:met_floatingLabelText="Enter DOB"
+            app:met_iconPadding="0dp"
+            app:met_primaryColor="@color/colorAccent"
+            app:met_textColor="@color/colorPrimaryDark"
+            app:met_underlineColor="@color/colorPrimaryDark" />
 
 
+        <TextView
+            android:id="@+id/txtGen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edtDOB"
+            android:layout_marginTop="10dp"
+            android:text="Select Gender"
+            android:textColor="@color/colorPrimaryDark" />
 
-            <com.rengwuxian.materialedittext.MaterialEditText
-                android:id="@+id/edtDOB"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:hint="Enter DOB"
-                app:met_autoValidate="true"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtGen"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <ImageView
+                android:id="@+id/imgMale"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_weight="0.5"
-                app:met_baseColor="@color/colorPrimaryDark"
-                app:met_iconPadding="0dp"
-                app:met_primaryColor="@color/colorAccent"
-                app:met_textColor="@color/colorPrimaryDark"
-                app:met_underlineColor="@color/colorPrimaryDark" />
+                android:src="@mipmap/ic_male" />
 
-          <Spinner
-              android:id="@+id/spinGender"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_weight="0.5"
-              android:textAlignment="center"
-              android:padding="20dp"
-              android:layout_gravity="center"/>
+            <ImageView
+                android:id="@+id/imgFemale"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_above="@+id/bottom_pic"
+                android:layout_weight="0.5"
+                android:src="@mipmap/ic_female" />
 
 
         </LinearLayout>
+
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/btnNext"
@@ -99,16 +153,18 @@
             android:layout_alignParentRight="true"
             android:layout_marginBottom="25dp"
             android:layout_marginRight="25dp"
-            app:backgroundTint="@color/colorPrimary"
-            android:src="@drawable/ic_chevron_right_white_24dp" />
+            android:src="@drawable/ic_chevron_right_white_24dp"
+            app:backgroundTint="@color/colorPrimaryDark" />
+
 
         <ImageView
+            android:id="@+id/bottom_pic"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:src="@drawable/bottom"
+            android:layout_height="180dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="-30dp"
             android:alpha="0.1"
-            android:layout_marginBottom="-32dp"
-            android:layout_alignParentBottom="true"/>
+            android:src="@drawable/bottom" />
 
 
     </RelativeLayout>

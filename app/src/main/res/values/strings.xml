@@ -5,5 +5,10 @@
     <string name="login_slogan_2">Choose <b>Snacks</b>, <b>Foods</b> in the most effective way</string>
     <string name="login_slogan_3">Pay <b>bills</b> instantly using <b>secure</b> payment gateway</string>
     <string name="app_logo"><b>Buffet</b>\n Chooses your next lunch</string>
+    <string name="no_location_data_provided">No Location Found</string>
+    <string name="service_not_available">Service Not Available</string>
+    <string name="invalid_lat_long_used">Invalid Co-Ordinates</string>
+    <string name="no_address_found">No Address Found</string>
+    <string name="google_geo_key">AIzaSyD5hUFFt-t-BSdPn7HNS2-C-d2jBCShdQ0</string>
 
 </resources>
