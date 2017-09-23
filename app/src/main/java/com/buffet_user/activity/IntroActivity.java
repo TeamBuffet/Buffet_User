@@ -5,13 +5,17 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.transition.Explode;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.buffet_user.R;
 import com.buffet_user.adapter.CustomPagerAdapter;
 import com.buffet_user.transitions.DepthPageTransformer;
 import com.buffet_user.transitions.ZoomOutPageTransformer;
+import com.kogitune.activity_transition.ActivityTransition;
 
 import me.relex.circleindicator.CircleIndicator;
 
@@ -22,11 +26,14 @@ public class IntroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
 
+
+
         int[] mResources = {
-                R.drawable.common_google_signin_btn_icon_dark,
+                R.drawable.buffet,
                 R.drawable.met_ic_clear,
                 R.drawable.com_truecaller_icon,
         };
+
 
         Button buttonContinue=(Button)findViewById(R.id.buttonContinue);
         buttonContinue.setOnClickListener(new View.OnClickListener() {

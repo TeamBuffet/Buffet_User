@@ -19,6 +19,8 @@ import com.truecaller.android.sdk.TrueClient;
 import com.truecaller.android.sdk.TrueError;
 import com.truecaller.android.sdk.TrueProfile;
 
+import info.abdolahi.CircularMusicProgressBar;
+
 /**
  * Created by Ankit on 02/08/17.
  */
@@ -29,18 +31,23 @@ public class LoginChooserActivity extends AppCompatActivity implements ITrueCall
     private String mTruecallerRequestNonce;
     TrueButton trueButton;
     private ImageView imgCover;
-    private ImageView imgLogo;
+    private CircularMusicProgressBar imgLogo;
     private Button btnLoginBuffet;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_chooser);
+        getWindow().setStatusBarColor(Color.TRANSPARENT);
+        getWindow().getDecorView().setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+
         trueButton = ((TrueButton) findViewById(R.id.com_truecaller_android_sdk_truebutton));
-        imgLogo = (ImageView) findViewById(R.id.imgLogo);
+        imgLogo = (CircularMusicProgressBar) findViewById(R.id.imgLogo);
         imgCover = (ImageView) findViewById(R.id.imgCover);
         btnLoginBuffet = (Button) findViewById(R.id.btnLogin);
-        Picasso.with(LoginChooserActivity.this).load("http://ilovepapers.com/wp-content/uploads/papers.co-mv40-food-salad-instagram-hunger-city-life-6-wallpaper.jpg").into(imgCover);
+        Picasso.with(LoginChooserActivity.this).load("https://i.ytimg.com/vi/VPHFD_VotGc/maxresdefault.jpg").into(imgCover);
         boolean usable = trueButton.isUsable();
         if (usable) {
             mTrueClient = new TrueClient(this, this);
@@ -48,11 +55,6 @@ public class LoginChooserActivity extends AppCompatActivity implements ITrueCall
         } else {
             trueButton.setVisibility(View.GONE);
         }
-        getWindow().setStatusBarColor(Color.TRANSPARENT);
-
-        getWindow().getDecorView().setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
 
         btnLoginBuffet.setOnClickListener(new View.OnClickListener() {
             @Override

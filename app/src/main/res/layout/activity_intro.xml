@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/white"
     tools:context="com.buffet_user.activity.IntroActivity">
 
     <TextView
         android:layout_width="match_parent"
         android:text="Welcome To Buffet !"
         android:gravity="center"
-        android:textColor="@color/white"
+        android:textColor="@color/colorPrimaryDark"
         android:textStyle="bold"
         android:textSize="30dp"
         android:layout_height="wrap_content"
@@ -33,11 +33,12 @@
         <Button
             android:id="@+id/buttonContinue"
             android:layout_width="250dp"
-            android:textColor="@color/white"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="20sp"
             android:background="@drawable/recboundcoloredblue"
             android:layout_height="wrap_content"
             android:text="Lets Get Started ! "
+            android:elevation="5dp"
             android:layout_above="@+id/indicator"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="14dp" />
