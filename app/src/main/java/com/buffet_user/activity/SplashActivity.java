@@ -20,6 +20,7 @@ public class SplashActivity extends AppCompatActivity {
                     sleep(1000);
                     Intent intent = new Intent(SplashActivity.this, IntroActivity.class);
                     startActivity(intent);
+                    finish();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

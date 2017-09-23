@@ -47,7 +47,7 @@ public class IntroActivity extends AppCompatActivity {
         ViewPager viewPager=(ViewPager)findViewById(R.id.viewPager);
         //   viewPager.setPageTransformer(true, new ZoomOutPageTransformer());
 
-        viewPager.setPageTransformer(true, new DepthPageTransformer());
+        viewPager.setPageTransformer(true, new ZoomOutPageTransformer());
 
         CustomPagerAdapter customPagerAdapter=new CustomPagerAdapter(this,mResources);
         viewPager.setAdapter(customPagerAdapter);
