@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="truesdk-0.5-">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.android/build-cache/8ebb391654c2bebd10cdff8ae06dfe7307d524f2/output/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.android/build-cache/8ebb391654c2bebd10cdff8ae06dfe7307d524f2/output/res" />
+      <root url="file://$USER_HOME$/.android/build-cache/204c55cca9fc1881e488d52bdde79fe1c9511f54/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/204c55cca9fc1881e488d52bdde79fe1c9511f54/output/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
