@@ -8,11 +8,10 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_centerVertical="true"
-        android:src="@drawable/buffet"
-        android:layout_centerHorizontal="true"
+        android:src="@drawable/view_pager_image1"
         android:transitionName="simple_activity_transition"
         tools:ignore="UnusedAttribute"/>
 </RelativeLayout>

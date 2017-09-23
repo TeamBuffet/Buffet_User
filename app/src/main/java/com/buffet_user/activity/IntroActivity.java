@@ -29,9 +29,9 @@ public class IntroActivity extends AppCompatActivity {
 
 
         int[] mResources = {
+                R.drawable.view_pager_image1,
                 R.drawable.buffet,
                 R.drawable.met_ic_clear,
-                R.drawable.com_truecaller_icon,
         };
 
 
@@ -45,9 +45,11 @@ public class IntroActivity extends AppCompatActivity {
         });
 
         ViewPager viewPager=(ViewPager)findViewById(R.id.viewPager);
-        //   viewPager.setPageTransformer(true, new ZoomOutPageTransformer());
+
 
         viewPager.setPageTransformer(true, new ZoomOutPageTransformer());
+
+        //   viewPager.setPageTransformer(true, new DepthPageTransformer());
 
         CustomPagerAdapter customPagerAdapter=new CustomPagerAdapter(this,mResources);
         viewPager.setAdapter(customPagerAdapter);
