@@ -23,6 +23,7 @@
         <activity android:name=".activity.LoginChooserActivity" />
         <activity android:name=".activity.LoginActivity_Buffet" />
         <activity android:name=".activity.FillProfileDetailsActivity" />
+        <activity android:name=".activity.IntroActivity"></activity>
 
         <meta-data
             android:name="com.truecaller.android.sdk.PartnerKey"
