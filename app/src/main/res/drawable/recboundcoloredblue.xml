@@ -8,5 +8,5 @@
         android:radius="10dp"></corners>
     <stroke
         android:width="2dp"
-        android:color="@color/light_purple" />
+        android:color="@color/colorAccent" />
 </shape>

@@ -3,9 +3,10 @@
     package="com.buffet_user">
 
     <uses-permission android:name="android.permission.INTERNET" />
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -13,30 +14,32 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.SplashActivity">
+        <activity android:name=".activity.login.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.LoginChooserActivity" />
-        <activity android:name=".activity.LoginActivity_Buffet" />
-        <activity android:name=".activity.FillProfileDetailsActivity" />
-        <activity android:name=".activity.IntroActivity"></activity>
+        <activity android:name=".activity.login.LoginChooserActivity" />
+        <activity android:name=".activity.login.LoginActivity_Buffet" />
+        <activity android:name=".activity.login.FillProfileDetailsActivity" />
+        <activity android:name=".activity.login.IntroActivity"></activity>
+        <activity android:name=".activity.review.BlogHomeActivity"
+            android:parentActivityName=".activity.login.PickUpLocationActivity"/>
 
         <meta-data
             android:name="com.truecaller.android.sdk.PartnerKey"
             android:value="@string/partnerKey" />
 
-        <activity android:name=".activity.PickUpLocationActivity"></activity>
+        <activity android:name=".activity.login.PickUpLocationActivity"></activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_geo_key" />
 
         <service
-            android:name=".activity.FetchAddressIntentService"
+            android:name=".activity.login.FetchAddressIntentService"
             android:exported="false" />
 
         <meta-data

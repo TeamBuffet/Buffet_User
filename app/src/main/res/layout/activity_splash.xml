@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context="com.buffet_user.activity.SplashActivity">
+    tools:context="com.buffet_user.activity.login.SplashActivity">
 
     <ImageView
         android:layout_width="match_parent"

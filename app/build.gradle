@@ -32,12 +32,16 @@ dependencies {
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.android.support:recyclerview-v7:25.3.1'
+    compile 'com.android.support:cardview-v7:25.3.1'
     compile 'com.rengwuxian.materialedittext:library:2.1.4'
     compile 'com.github.aliab:circular-music-progressbar:v1.2.0'
     compile 'me.relex:circleindicator:1.2.2@aar'
     compile 'com.google.android.gms:play-services-maps:10.2.0'
     compile 'com.google.android.gms:play-services-location:10.2.0'
     compile 'com.google.android.gms:play-services-places:10.2.0'
+    compile 'com.github.armcha:SpaceNavigationView:1.6.0'
+
     testCompile 'junit:junit:4.12'
 
 }
@@ -46,7 +50,9 @@ repositories {
     flatDir {
         dirs 'libs'
     }
-    maven { url "https://jitpack.io" }
+    maven { url "https://jitpack.io"
+
+    }
 
 }
 

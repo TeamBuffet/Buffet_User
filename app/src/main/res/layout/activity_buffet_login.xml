@@ -20,6 +20,7 @@
             android:layout_height="wrap_content"
             android:hint="Enter Mobile Number"
             app:met_autoValidate="true"
+            android:inputType="phone"
             app:met_baseColor="@color/white"
             app:met_iconLeft="@drawable/ic_phone_black_24dp"
             app:met_primaryColor="@color/white"
