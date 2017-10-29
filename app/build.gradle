@@ -27,7 +27,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile(name: "truesdk-0.5", ext: "aar")
-
+    compile "com.android.support:support-core-utils:25.3.1"
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
@@ -41,6 +41,7 @@ dependencies {
     compile 'com.google.android.gms:play-services-location:10.2.0'
     compile 'com.google.android.gms:play-services-places:10.2.0'
     compile 'com.github.armcha:SpaceNavigationView:1.6.0'
+    compile group: 'com.cloudinary', name: 'cloudinary-android', version: '1.20.0'
 
     testCompile 'junit:junit:4.12'
 
@@ -51,9 +52,16 @@ repositories {
         dirs 'libs'
     }
     maven { url "https://jitpack.io"
-
     }
 
+}
+allprojects {
+    repositories {
+        jcenter()
+        maven {
+            url "https://maven.google.com"
+        }
+    }
 }
 
 
