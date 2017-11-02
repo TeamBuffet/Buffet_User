@@ -172,18 +172,18 @@ public class MessageFeedPOJO implements Serializable,Parcelable{
 
     public MessageFeedPOJO(Parcel in){
         this.blogId = in.readInt();
-        this.name = in.readString();
+        this.userId=in.readInt();
         this.user =  in.readInt();
+        this.likes=in.readInt();
+        this.name = in.readString();
         this.url=in.readString();
         this.caption=in.readString();
         this.timestamp=in.readString();
-        this.userId=in.readInt();
         this.dob=in.readString();
         this.phone=in.readString();
         this.email=in.readString();
         this.gender=in.readString();
         this.location=in.readString();
-        this.likes=in.readInt();
     }
 
 
@@ -201,11 +201,11 @@ public class MessageFeedPOJO implements Serializable,Parcelable{
         dest.writeString(this.name);
         dest.writeString(this.url);
         dest.writeString(this.caption);
-        dest.writeString(this.gender);
-        dest.writeString(this.dob);
-        dest.writeString(this.email);
-        dest.writeString(this.phone);
-        dest.writeString(this.location);
         dest.writeString(this.timestamp);
+        dest.writeString(this.dob);
+        dest.writeString(this.phone);
+        dest.writeString(this.email);
+        dest.writeString(this.gender);
+        dest.writeString(this.location);
     }
 }

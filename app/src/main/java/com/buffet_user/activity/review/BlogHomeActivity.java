@@ -107,7 +107,7 @@ public class BlogHomeActivity extends BaseActivity {
                 }
                 if(itemName.equals("Loved")){
                     Toast.makeText(BlogHomeActivity.this, "Love", Toast.LENGTH_SHORT).show();
-
+                    startActivity(openActivity(BlogHomeActivity.this,ItemReviewActivity.class));
                 }
             }
 

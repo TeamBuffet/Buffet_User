@@ -6,8 +6,8 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -23,23 +23,31 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.login.LoginChooserActivity"
-            android:configChanges="orientation|screenLayout|screenSize"/>
-        <activity android:name=".activity.login.LoginActivity_Buffet"
-            android:configChanges="orientation|screenLayout|screenSize"/>
+        <activity
+            android:name=".activity.login.LoginChooserActivity"
+            android:configChanges="orientation|screenLayout|screenSize" />
+        <activity
+            android:name=".activity.login.LoginActivity_Buffet"
+            android:configChanges="orientation|screenLayout|screenSize" />
         <activity android:name=".activity.login.FillProfileDetailsActivity" />
-        <activity android:name=".activity.login.IntroActivity"
-            android:configChanges="orientation|screenLayout|screenSize"></activity>
-        <activity android:name=".activity.review.BlogHomeActivity"
-            android:parentActivityName=".activity.login.PickUpLocationActivity"
+        <activity
+            android:name=".activity.login.IntroActivity"
             android:configChanges="orientation|screenLayout|screenSize"/>
+        <activity
+            android:name=".activity.review.BlogHomeActivity"
+            android:configChanges="orientation|screenLayout|screenSize"
+            android:parentActivityName=".activity.login.PickUpLocationActivity" />
 
         <meta-data
             android:name="com.truecaller.android.sdk.PartnerKey"
             android:value="@string/partnerKey" />
 
-        <activity android:name=".activity.login.PickUpLocationActivity"
-            android:configChanges="orientation|screenLayout|screenSize"></activity>
+        <activity
+            android:name=".activity.login.PickUpLocationActivity"
+            android:configChanges="orientation|screenLayout|screenSize"/>
+        <activity
+            android:name=".activity.review.ItemReviewActivity"
+            android:configChanges="screenSize|orientation|screenLayout" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
