@@ -12,4 +12,6 @@
     <color name="grey">#eeeeee</color>
     <color name="black">#212121</color>
     <color name="light_green">#06D6A0</color>
+    <color name="Gray">#F5F5F5</color>
+    <color name="lightwhite">#99FFFFFF</color>
 </resources>

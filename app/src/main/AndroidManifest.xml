@@ -3,9 +3,10 @@
     package="com.buffet_user">
 
     <uses-permission android:name="android.permission.INTERNET" />
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -23,13 +24,13 @@
         <activity android:name=".activity.LoginChooserActivity" />
         <activity android:name=".activity.LoginActivity_Buffet" />
         <activity android:name=".activity.FillProfileDetailsActivity" />
-        <activity android:name=".activity.IntroActivity"></activity>
+        <activity android:name=".activity.IntroActivity" />
 
         <meta-data
             android:name="com.truecaller.android.sdk.PartnerKey"
             android:value="@string/partnerKey" />
 
-        <activity android:name=".activity.PickUpLocationActivity"></activity>
+        <activity android:name=".activity.PickUpLocationActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -43,6 +44,7 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
+        <activity android:name=".activity.DashboardActivity"></activity>
     </application>
 
 </manifest>

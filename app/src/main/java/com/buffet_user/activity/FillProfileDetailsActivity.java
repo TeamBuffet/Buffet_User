@@ -112,7 +112,7 @@ public class FillProfileDetailsActivity extends BaseActivity {
 
                 if ((ContextCompat.checkSelfPermission(FillProfileDetailsActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
                         ContextCompat.checkSelfPermission(FillProfileDetailsActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)) {
-                    Intent intent = new Intent(FillProfileDetailsActivity.this, PickUpLocationActivity.class);
+                    Intent intent = new Intent(FillProfileDetailsActivity.this, DashboardActivity.class);
                     startActivity(intent);
 
                 } else {

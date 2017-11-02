@@ -1,0 +1,152 @@
+package com.buffet_user.activity;
+
+import android.app.ProgressDialog;
+import android.graphics.Color;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.buffet_user.R;
+import com.buffet_user.adapter.CustomAdapterDashboardCategory;
+import com.buffet_user.adapter.CustomAdapterDashboardMenu;
+import com.buffet_user.network.ApiClientBase;
+import com.buffet_user.network.ApiClientGetData;
+import com.buffet_user.network.DataManager;
+import com.buffet_user.pojo.MenuPojo;
+import com.buffet_user.pojo.SingleMenuPojo;
+import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersDecoration;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class DashboardActivity extends AppCompatActivity {
+
+    private RecyclerView recyclerViewMenu,recyclerViewCategory;
+    private MenuPojo menuPojo;
+    private CustomAdapterDashboardMenu customAdapterDashboardMenu;
+    private RecyclerView.LayoutManager layoutManager;
+    private ApiClientGetData apiClientGetData;
+    StickyRecyclerHeadersDecoration headersDecor;
+    Toolbar tb;
+    DrawerLayout drawer;
+    ActionBarDrawerToggle toggle;
+    MenuItem prevItem;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_dashboard);
+
+        getWindow().setStatusBarColor(Color.DKGRAY);
+
+
+
+
+        recyclerViewMenu =(RecyclerView)findViewById(R.id.recyclerViewMenu);
+        recyclerViewCategory=(RecyclerView)findViewById(R.id.recyclerViewCategory);
+        layoutManager=new LinearLayoutManager(this);
+        recyclerViewMenu.setLayoutManager(layoutManager);
+        recyclerViewMenu.setHasFixedSize(true);
+
+        tb=(Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(tb);
+        tb.setTitleTextColor(Color.DKGRAY);
+        getSupportActionBar().setTitle("Recommended");
+
+
+        //drawer code
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.navigator);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+
+
+
+        toggle = new ActionBarDrawerToggle(this, drawer,tb,R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+        drawer.closeDrawers();
+
+
+
+
+        initMenu();
+
+  /*      DataManager dataManager=new DataManager(this);
+        menuPojo = dataManager.getDashboardData();
+        ArrayList<SingleMenuPojo> l1=new ArrayList<SingleMenuPojo>();
+        l1.addAll(menuPojo.getMessage().getPizza());
+        l1.addAll(menuPojo.getMessage().getSides());
+        loaddata(l1);
+        initCategoryList();
+*/
+
+    }
+
+    private void initMenu() {
+
+        final ProgressDialog pDialog = new ProgressDialog(this);
+        pDialog.setMessage("Loading...");
+        pDialog.setCancelable(false);
+        pDialog.show();
+        // show it
+        pDialog.show();
+        apiClientGetData= ApiClientBase.getApiClient().create(ApiClientGetData.class);
+        Call<MenuPojo> call=apiClientGetData.getInfo();
+        call.enqueue(new Callback<MenuPojo>() {
+            @Override
+            public void onResponse(Call<MenuPojo> call, Response<MenuPojo> response) {
+
+                menuPojo=response.body();
+                ArrayList<SingleMenuPojo> l1=new ArrayList<SingleMenuPojo>();
+                l1.addAll(menuPojo.getMessage().getPizza());
+                l1.addAll(menuPojo.getMessage().getSides());
+                loaddata(l1);
+                initCategoryList();
+                pDialog.hide();
+
+            }
+
+            @Override
+            public void onFailure(Call<MenuPojo> call, Throwable t) {
+                pDialog.hide();
+
+                Toast.makeText(DashboardActivity.this,"Something went wrong",Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+    }
+
+    public void loaddata(ArrayList <SingleMenuPojo> singlemenupojo) {
+        customAdapterDashboardMenu =new CustomAdapterDashboardMenu(DashboardActivity.this,singlemenupojo);
+        recyclerViewMenu.setAdapter(customAdapterDashboardMenu);
+        headersDecor = new StickyRecyclerHeadersDecoration(customAdapterDashboardMenu);
+        recyclerViewMenu.addItemDecoration(headersDecor);
+        Toast.makeText(DashboardActivity.this,"Success !!!!",Toast.LENGTH_SHORT).show();
+    }
+
+    private void initCategoryList() {
+        ArrayList<String> category = new ArrayList<>(Arrays.asList(" Recommended " , " Pizza Zone", " Sides Picks ", " Offers "));
+        CustomAdapterDashboardCategory customAdapterDashboardCategory=new CustomAdapterDashboardCategory(this,category,tb,menuPojo,recyclerViewMenu,headersDecor);
+        recyclerViewCategory.setHasFixedSize(true);
+        recyclerViewCategory.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        recyclerViewCategory.setAdapter(customAdapterDashboardCategory);
+    }
+
+}
