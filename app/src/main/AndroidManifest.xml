@@ -23,18 +23,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.login.LoginChooserActivity" />
-        <activity android:name=".activity.login.LoginActivity_Buffet" />
+        <activity android:name=".activity.login.LoginChooserActivity"
+            android:configChanges="orientation|screenLayout|screenSize"/>
+        <activity android:name=".activity.login.LoginActivity_Buffet"
+            android:configChanges="orientation|screenLayout|screenSize"/>
         <activity android:name=".activity.login.FillProfileDetailsActivity" />
-        <activity android:name=".activity.login.IntroActivity"></activity>
+        <activity android:name=".activity.login.IntroActivity"
+            android:configChanges="orientation|screenLayout|screenSize"></activity>
         <activity android:name=".activity.review.BlogHomeActivity"
-            android:parentActivityName=".activity.login.PickUpLocationActivity"/>
+            android:parentActivityName=".activity.login.PickUpLocationActivity"
+            android:configChanges="orientation|screenLayout|screenSize"/>
 
         <meta-data
             android:name="com.truecaller.android.sdk.PartnerKey"
             android:value="@string/partnerKey" />
 
-        <activity android:name=".activity.login.PickUpLocationActivity"></activity>
+        <activity android:name=".activity.login.PickUpLocationActivity"
+            android:configChanges="orientation|screenLayout|screenSize"></activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

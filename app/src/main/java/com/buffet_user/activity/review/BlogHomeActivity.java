@@ -7,7 +7,6 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
@@ -22,6 +21,10 @@ import android.widget.Toast;
 import com.buffet_user.R;
 import com.buffet_user.activity.BaseActivity;
 import com.buffet_user.fragment.review.FeedFragment;
+import com.buffet_user.pojo.BlogFeedPOJO;
+import com.buffet_user.pojo.MessageFeedPOJO;
+import com.buffet_user.retrofit.ApiUtils;
+import com.buffet_user.retrofit.SOService;
 import com.cloudinary.android.MediaManager;
 import com.cloudinary.android.callback.ErrorInfo;
 import com.cloudinary.android.callback.UploadCallback;
@@ -29,10 +32,12 @@ import com.luseen.spacenavigation.SpaceItem;
 import com.luseen.spacenavigation.SpaceNavigationView;
 import com.luseen.spacenavigation.SpaceOnClickListener;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by Ankit on 28/10/17.
@@ -46,8 +51,8 @@ public class BlogHomeActivity extends BaseActivity {
     private int permissionCheck2;
     private static final int MY_PERMISSIONS_REQUEST_READ_STORAGE = 245;
     private int PICK_IMAGE_REQUEST = 1;
-    private Cursor cursor;
-
+    private SOService mService;
+    private ArrayList<MessageFeedPOJO> listFeed;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,20 +61,20 @@ public class BlogHomeActivity extends BaseActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         txtTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
+        SpaceNavigationView spaceNavigationView = (SpaceNavigationView) findViewById(R.id.bottomNav);
         txtTitle.setText("Feeds");
         getSupportActionBar().setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        final FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        FeedFragment feedFragment = new FeedFragment();
-        fragmentTransaction.replace(R.id.frame, feedFragment);
-        fragmentTransaction.commit();
-        initCloudinary();
-        SpaceNavigationView spaceNavigationView = (SpaceNavigationView) findViewById(R.id.bottomNav);
+        listFeed = new ArrayList<MessageFeedPOJO>();
+        mService = ApiUtils.getSOService();
+        loadFeeds();
+        if (!checkMediaManagerInitialized) {
+            initCloudinary();
+        }
         spaceNavigationView.initWithSaveInstanceState(savedInstanceState);
         spaceNavigationView.addSpaceItem(new SpaceItem("HOME", R.mipmap.ic_home));
         spaceNavigationView.addSpaceItem(new SpaceItem("Loved", R.mipmap.ic_love));
         spaceNavigationView.setCentreButtonColor(ContextCompat.getColor(this, R.color.colorPrimary));
-
         spaceNavigationView.setSpaceOnClickListener(new SpaceOnClickListener() {
             @Override
             public void onCentreButtonClick() {
@@ -92,22 +97,67 @@ public class BlogHomeActivity extends BaseActivity {
 
             @Override
             public void onItemClick(int itemIndex, String itemName) {
-                if (itemName.equals("Home")) {
-                    FeedFragment feedFragment = new FeedFragment();
+                if (itemName.equals("HOME")) {
+                    FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                    FeedFragment feedFragment = new FeedFragment().newInstance(listFeed);
                     fragmentTransaction.replace(R.id.frame, feedFragment);
                     fragmentTransaction.commit();
+                    Toast.makeText(BlogHomeActivity.this, "Home", Toast.LENGTH_SHORT).show();
+
+                }
+                if(itemName.equals("Loved")){
+                    Toast.makeText(BlogHomeActivity.this, "Love", Toast.LENGTH_SHORT).show();
 
                 }
             }
 
             @Override
             public void onItemReselected(int itemIndex, String itemName) {
-                if (itemName.equals("Home")) {
-                    FeedFragment feedFragment = new FeedFragment();
+                if (itemName.equals("HOME")) {
+                    Toast.makeText(BlogHomeActivity.this, "Home", Toast.LENGTH_SHORT).show();
+                    FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                    FeedFragment feedFragment = new FeedFragment().newInstance(listFeed);
                     fragmentTransaction.replace(R.id.frame, feedFragment);
                     fragmentTransaction.commit();
 
                 }
+                if(itemName.equals("Loved")){
+                    Toast.makeText(BlogHomeActivity.this, "Love", Toast.LENGTH_SHORT).show();
+
+                }
+
+            }
+        });
+
+    }
+
+
+    private void loadFeeds() {
+
+        mService.getMessage().enqueue(new Callback<BlogFeedPOJO>() {
+            @Override
+            public void onResponse(Call<BlogFeedPOJO> call, Response<BlogFeedPOJO> response) {
+
+                if (response.isSuccessful() && response.body().getError().equals("false")) {
+                    for (MessageFeedPOJO message : response.body().getMessage()) {
+                        listFeed.add(message);
+                        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                        FeedFragment feedFragment = new FeedFragment().newInstance(listFeed);
+                        fragmentTransaction.replace(R.id.frame, feedFragment);
+                        fragmentTransaction.commit();
+
+                    }
+                    Log.d("MainActivity", "posts loaded from API");
+                } else {
+                    int statusCode = response.code();
+                    // handle request errors depending on status code
+                    Toast.makeText(BlogHomeActivity.this, "Error in hit", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BlogFeedPOJO> call, Throwable t) {
+                Log.d("MainActivity", "error loading from API");
 
             }
         });
@@ -130,37 +180,36 @@ public class BlogHomeActivity extends BaseActivity {
 
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri fileUri = data.getData();
-            upload_to_cloud(getPathFromURI(BlogHomeActivity.this,fileUri));
+            upload_to_cloud(getPathFromURI(BlogHomeActivity.this, fileUri));
 
         }
 
 
     }
-    public String getPathFromURI(Context context,Uri uri) {
-            String filePath = "";
-            String wholeID = DocumentsContract.getDocumentId(uri);
 
-            // Split at colon, use second item in the array
-            String id = wholeID.split(":")[1];
+    public String getPathFromURI(Context context, Uri uri) {
+        String filePath = "";
+        String wholeID = DocumentsContract.getDocumentId(uri);
 
-            String[] column = { MediaStore.Images.Media.DATA };
+        // Split at colon, use second item in the array
+        String id = wholeID.split(":")[1];
 
-            // where id is equal to
-            String sel = MediaStore.Images.Media._ID + "=?";
+        String[] column = {MediaStore.Images.Media.DATA};
 
-            Cursor cursor = context.getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                    column, sel, new String[]{ id }, null);
+        // where id is equal to
+        String sel = MediaStore.Images.Media._ID + "=?";
 
-            int columnIndex = cursor.getColumnIndex(column[0]);
+        Cursor cursor = context.getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                column, sel, new String[]{id}, null);
 
-            if (cursor.moveToFirst()) {
-                filePath = cursor.getString(columnIndex);
-            }
-            cursor.close();
-            return filePath;
+        int columnIndex = cursor.getColumnIndex(column[0]);
+
+        if (cursor.moveToFirst()) {
+            filePath = cursor.getString(columnIndex);
         }
-
-
+        cursor.close();
+        return filePath;
+    }
 
 
     private void upload_to_cloud(String path) {
@@ -172,10 +221,11 @@ public class BlogHomeActivity extends BaseActivity {
                 // your code here
                 Toast.makeText(BlogHomeActivity.this, "Uploading", Toast.LENGTH_SHORT).show();
             }
+
             @Override
             public void onProgress(String requestId, long bytes, long totalBytes) {
                 // example code starts here
-                Double progress = (double) bytes/totalBytes;
+                Double progress = (double) bytes / totalBytes;
                 // post progress to app UI (e.g. progress bar, notification)
                 // example code ends here
             }
@@ -188,20 +238,22 @@ public class BlogHomeActivity extends BaseActivity {
 
             @Override
             public void onError(String requestId, ErrorInfo error) {
-                Toast.makeText(BlogHomeActivity.this, "error"+error.getDescription(), Toast.LENGTH_SHORT).show();
-                Log.e("Error",error.getDescription());
+                Toast.makeText(BlogHomeActivity.this, "error" + error.getDescription(), Toast.LENGTH_SHORT).show();
+                Log.e("Error", error.getDescription());
             }
 
             @Override
             public void onReschedule(String requestId, ErrorInfo error) {
-                Log.e("ErrorRE",error.getDescription());
+                Log.e("ErrorRE", error.getDescription());
 
-            }}).dispatch();
+            }
+        }).dispatch();
 
     }
 
-
-
-
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
 }
 

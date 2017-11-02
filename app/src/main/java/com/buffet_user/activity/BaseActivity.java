@@ -21,6 +21,7 @@ public class BaseActivity extends AppCompatActivity {
     public static final String MyPREFERENCES = "Buffet";
     public SharedPreferences sharedPreferences;
     public SharedPreferences.Editor editor;
+    public static boolean checkMediaManagerInitialized=false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,7 +40,7 @@ public class BaseActivity extends AppCompatActivity {
         config.put("api_key","625937658917463");
         config.put("api_secret","zjSoyCRWA0HgF6aBHlpN51LFKSo");
         MediaManager.init(this, config);
-
+        checkMediaManagerInitialized=true;
     }
     public Intent openActivity(Context first, Class<? extends AppCompatActivity> second) {
 
