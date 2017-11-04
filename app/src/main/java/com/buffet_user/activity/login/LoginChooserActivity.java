@@ -6,7 +6,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -14,7 +13,6 @@ import android.widget.Toast;
 
 import com.buffet_user.R;
 import com.buffet_user.activity.BaseActivity;
-import com.buffet_user.activity.review.BlogHomeActivity;
 import com.squareup.picasso.Picasso;
 import com.truecaller.android.sdk.ITrueCallback;
 import com.truecaller.android.sdk.TrueButton;
@@ -36,6 +34,7 @@ public class LoginChooserActivity extends BaseActivity implements ITrueCallback 
     private ImageView imgCover;
     private CircularMusicProgressBar imgLogo;
     private Button btnLoginBuffet;
+    private String phoneNumber;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -66,7 +65,7 @@ public class LoginChooserActivity extends BaseActivity implements ITrueCallback 
             @Override
             public void onClick(View v) {
 
-                startActivity(openActivity(LoginChooserActivity.this,LoginActivity_Buffet.class));
+                startActivity(openActivity(LoginChooserActivity.this, LoginActivity_Buffet.class));
 
             }
         });
@@ -76,6 +75,24 @@ public class LoginChooserActivity extends BaseActivity implements ITrueCallback 
     @Override
     public void onSuccesProfileShared(@NonNull TrueProfile trueProfile) {
         final String fullName = trueProfile.firstName + " " + trueProfile.lastName;
+        phoneNumber = trueProfile.phoneNumber != null ? trueProfile.phoneNumber : "";
+        String email = trueProfile.email != null ? trueProfile.email : "";
+        String gender = trueProfile.gender != null ? trueProfile.gender : "";
+        String url = trueProfile.avatarUrl != null ? trueProfile.avatarUrl : "";
+        editor.putString("phonenumber", phoneNumber);
+        editor.putString("name", fullName);
+        editor.putString("email", email);
+        editor.putString("user_gender", gender);
+        editor.putString("avatar", url);
+        editor.apply();
+        Intent intent = openActivity(LoginChooserActivity.this, FillProfileDetailsActivity.class);
+        intent.putExtra("phonenumber", phoneNumber);
+        intent.putExtra("name", fullName);
+        intent.putExtra("email", email);
+        intent.putExtra("gender", gender);
+        intent.putExtra("avatar", url);
+        intent.putExtra("activity","truecaller");
+        startActivity(intent);
 
     }
 
@@ -90,6 +107,8 @@ public class LoginChooserActivity extends BaseActivity implements ITrueCallback 
     protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
         if (null != mTrueClient && mTrueClient.onActivityResult(requestCode, resultCode, data)) {
             return;
+
+
         }
 
         super.onActivityResult(requestCode, resultCode, data);

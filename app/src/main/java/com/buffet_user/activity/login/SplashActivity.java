@@ -2,11 +2,9 @@ package com.buffet_user.activity.login;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
 import com.buffet_user.R;
 import com.buffet_user.activity.BaseActivity;
-import com.buffet_user.activity.review.BlogHomeActivity;
 
 public class SplashActivity extends BaseActivity {
 
@@ -20,7 +18,13 @@ public class SplashActivity extends BaseActivity {
             public void run() {
                 try {
                     sleep(1000);
-                    startActivity(openActivity(SplashActivity.this,IntroActivity.class));
+                    if (sharedPreferences.getString("phonenumber", "") != "") {
+                        Intent intent = openActivity(SplashActivity.this, FillProfileDetailsActivity.class);
+                        intent.putExtra("activity", "buffet");
+                        startActivity(intent);
+                        finish();
+                    }
+                    startActivity(openActivity(SplashActivity.this, IntroActivity.class));
                     finish();
                 } catch (InterruptedException e) {
                     e.printStackTrace();

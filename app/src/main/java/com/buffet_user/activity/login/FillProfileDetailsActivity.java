@@ -23,8 +23,8 @@ import android.widget.TextView;
 
 import com.buffet_user.R;
 import com.buffet_user.activity.BaseActivity;
-import com.buffet_user.activity.review.BlogHomeActivity;
 import com.rengwuxian.materialedittext.MaterialEditText;
+import com.squareup.picasso.Picasso;
 
 import info.abdolahi.CircularMusicProgressBar;
 
@@ -45,6 +45,7 @@ public class FillProfileDetailsActivity extends BaseActivity {
     private String[] Permissions = new String[]{
             Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
     private static final int PERMS_REQUEST_CODE = 140;
+    String phonenumber, email, name, gender, avatar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -66,6 +67,27 @@ public class FillProfileDetailsActivity extends BaseActivity {
         profile.setValue(90);
         profile.setProgressAnimationState(true);
 
+        Intent intent = getIntent();
+        String activity = intent.getStringExtra("activity");
+        if (activity.equals("buffet")) {
+            phonenumber = sharedPreferences.getString("phonenumber", "");
+        } else if (activity.equals("truecaller")) {
+
+            name = sharedPreferences.getString("name", "");
+            email = sharedPreferences.getString("email", "");
+            gender = sharedPreferences.getString("gender", "");
+            phonenumber = sharedPreferences.getString("phonenumber", "");
+            avatar = sharedPreferences.getString("avatar", "");
+            if (avatar != null || avatar != "")
+                Picasso.with(FillProfileDetailsActivity.this).load(avatar).into(profile);
+            edtEmail.setText(email);
+            edtName.setText(name);
+            if (gender.equals("Female")) {
+                imgFemale.performClick();
+            } else {
+                imgMale.performClick();
+            }
+        }
 
         imgFemale.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,7 +135,7 @@ public class FillProfileDetailsActivity extends BaseActivity {
 
                 if ((ContextCompat.checkSelfPermission(FillProfileDetailsActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
                         ContextCompat.checkSelfPermission(FillProfileDetailsActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)) {
-                    startActivity(openActivity(FillProfileDetailsActivity.this,PickUpLocationActivity.class));
+                    startActivity(openActivity(FillProfileDetailsActivity.this, PickUpLocationActivity.class));
 
 
                 } else {
