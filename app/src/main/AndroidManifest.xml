@@ -32,7 +32,7 @@
         <activity android:name=".activity.login.FillProfileDetailsActivity" />
         <activity
             android:name=".activity.login.IntroActivity"
-            android:configChanges="orientation|screenLayout|screenSize"/>
+            android:configChanges="orientation|screenLayout|screenSize" />
         <activity
             android:name=".activity.review.BlogHomeActivity"
             android:configChanges="orientation|screenLayout|screenSize"
@@ -44,10 +44,14 @@
 
         <activity
             android:name=".activity.login.PickUpLocationActivity"
-            android:configChanges="orientation|screenLayout|screenSize"/>
+            android:configChanges="orientation|screenLayout|screenSize" />
         <activity
             android:name=".activity.review.ItemReviewActivity"
             android:configChanges="screenSize|orientation|screenLayout" />
+        <activity
+            android:name=".activity.review.PostFeedActivity"
+            android:configChanges="screenSize|orientation"
+            android:parentActivityName=".activity.review.BlogHomeActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

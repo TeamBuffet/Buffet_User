@@ -105,9 +105,9 @@ public class BlogHomeActivity extends BaseActivity {
                     Toast.makeText(BlogHomeActivity.this, "Home", Toast.LENGTH_SHORT).show();
 
                 }
-                if(itemName.equals("Loved")){
+                if (itemName.equals("Loved")) {
                     Toast.makeText(BlogHomeActivity.this, "Love", Toast.LENGTH_SHORT).show();
-                    startActivity(openActivity(BlogHomeActivity.this,ItemReviewActivity.class));
+                    startActivity(openActivity(BlogHomeActivity.this, ItemReviewActivity.class));
                 }
             }
 
@@ -121,7 +121,7 @@ public class BlogHomeActivity extends BaseActivity {
                     fragmentTransaction.commit();
 
                 }
-                if(itemName.equals("Loved")){
+                if (itemName.equals("Loved")) {
                     Toast.makeText(BlogHomeActivity.this, "Love", Toast.LENGTH_SHORT).show();
 
                 }
@@ -232,8 +232,9 @@ public class BlogHomeActivity extends BaseActivity {
 
             @Override
             public void onSuccess(String requestId, Map resultData) {
-                Toast.makeText(BlogHomeActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
-
+                Intent intent = openActivity(BlogHomeActivity.this, PostFeedActivity.class);
+                intent.putExtra("url",resultData.get("url").toString());
+                startActivity(intent);
             }
 
             @Override
@@ -249,6 +250,11 @@ public class BlogHomeActivity extends BaseActivity {
             }
         }).dispatch();
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     @Override

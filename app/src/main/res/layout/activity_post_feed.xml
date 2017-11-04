@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+    <ImageView
+        android:id="@+id/imgFeed"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:background="@color/black"
+        android:scaleType="fitCenter"
+        android:src="@drawable/image_pizza_sample" />
+
+
+    <EditText
+        android:id="@+id/edtCaption"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imgFeed"
+        android:layout_marginTop="15dp"
+        android:fontFamily="cursive"
+        android:hint=" Share Something With People . . ."
+        android:maxLength="150"
+        android:maxLines="4"
+        android:textColorHint="@color/darkgrey"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/ripple_green"
+        android:text="Post"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_above="@+id/btnSubmit"
+        android:alpha="0.1"
+        android:src="@drawable/bottom" />
+
+</RelativeLayout>

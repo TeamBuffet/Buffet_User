@@ -5,13 +5,21 @@ package com.buffet_user.retrofit;
  */
 import com.buffet_user.pojo.BlogFeedPOJO;
 import com.buffet_user.pojo.MessageFeedPOJO;
+import com.buffet_user.pojo.PostFeedDataPOJO;
+import com.buffet_user.pojo.PostFeedPOJO;
+
+import org.json.JSONObject;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 
 public interface SOService {
 
     @GET("/review/getallfeeds")
     Call<BlogFeedPOJO> getMessage();
 
+    @POST("/review/addfeed")
+    Call<PostFeedPOJO> savePost(@Body PostFeedDataPOJO post);
 }
