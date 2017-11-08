@@ -15,6 +15,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.buffet_user.R;
@@ -45,7 +46,7 @@ public class DashboardActivity extends AppCompatActivity {
     DrawerLayout drawer;
     ActionBarDrawerToggle toggle;
     MenuItem prevItem;
-
+    TextView txtToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,13 +60,12 @@ public class DashboardActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerViewMenu.setLayoutManager(layoutManager);
         recyclerViewMenu.setHasFixedSize(true);
-
         tb = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(tb);
         tb.setTitleTextColor(Color.DKGRAY);
-        getSupportActionBar().setTitle("Recommended");
-
-
+        getSupportActionBar().setTitle("");
+        txtToolbar = (TextView) tb.findViewById(R.id.toolbar_title);
+        txtToolbar.setText("Recommended");
         //drawer code
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigator);
@@ -137,7 +137,7 @@ public class DashboardActivity extends AppCompatActivity {
 
     private void initCategoryList() {
         ArrayList<String> category = new ArrayList<>(Arrays.asList(" Recommended ", " Pizza Zone", " Sides Picks ", " Offers "));
-        CustomAdapterDashboardCategory customAdapterDashboardCategory = new CustomAdapterDashboardCategory(this, category, tb, menuPojo, recyclerViewMenu, headersDecor);
+        CustomAdapterDashboardCategory customAdapterDashboardCategory = new CustomAdapterDashboardCategory(this, category, txtToolbar, menuPojo, recyclerViewMenu, headersDecor);
         recyclerViewCategory.setHasFixedSize(true);
         recyclerViewCategory.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         recyclerViewCategory.setAdapter(customAdapterDashboardCategory);

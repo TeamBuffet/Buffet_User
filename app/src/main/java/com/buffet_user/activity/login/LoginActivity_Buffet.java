@@ -36,6 +36,9 @@ public class LoginActivity_Buffet extends BaseActivity {
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             btnContinue.setBackgroundResource(R.drawable.ripple_green);
         }
+        if (sharedPreferences.getString("phonenumber", "") != "") {
+            edtContact.setText(sharedPreferences.getString("phonenumber", ""));
+        }
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,6 +47,7 @@ public class LoginActivity_Buffet extends BaseActivity {
                     Toast.makeText(LoginActivity_Buffet.this, "Invalid Phone Number", Toast.LENGTH_SHORT).show();
                 } else {
                     editor.putString("phonenumber", phonenumber);
+                    editor.apply();
                     Intent intent = openActivity(LoginActivity_Buffet.this, FillProfileDetailsActivity.class);
                     intent.putExtra("activity", "buffet");
                     intent.putExtra("phonenumber", phonenumber);

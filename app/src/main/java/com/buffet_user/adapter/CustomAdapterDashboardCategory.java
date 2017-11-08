@@ -3,14 +3,13 @@ package com.buffet_user.adapter;
 /**
  * Created by Ankit on 08/11/17.
  */
-import android.app.Activity;
+
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.buffet_user.R;
@@ -28,20 +27,20 @@ public class CustomAdapterDashboardCategory extends RecyclerView.Adapter<CustomA
 
     private Context context;
     ArrayList<String> category;
-    Toolbar tb;
-    MenuPojo menuPojo=new MenuPojo();
+    TextView tb;
+    MenuPojo menuPojo = new MenuPojo();
     CustomAdapterDashboardMenu customAdapterDashboardMenu;
     RecyclerView recyclerView;
     StickyRecyclerHeadersDecoration headersDecor;
 
-    public CustomAdapterDashboardCategory(Context context, ArrayList<String> category, Toolbar tb, MenuPojo menuPojo, RecyclerView recyclerView, StickyRecyclerHeadersDecoration headersDecor) {
+    public CustomAdapterDashboardCategory(Context context, ArrayList<String> category, TextView tb, MenuPojo menuPojo, RecyclerView recyclerView, StickyRecyclerHeadersDecoration headersDecor) {
 
         this.context = context;
-        this.category=category;
-        this.tb=tb;
-        this.menuPojo=menuPojo;
-        this.headersDecor=headersDecor;
-        this.recyclerView=recyclerView;
+        this.category = category;
+        this.tb = tb;
+        this.menuPojo = menuPojo;
+        this.headersDecor = headersDecor;
+        this.recyclerView = recyclerView;
 
     }
 
@@ -61,7 +60,6 @@ public class CustomAdapterDashboardCategory extends RecyclerView.Adapter<CustomA
         holder.textViewItemName.setText(category.get(position));
 
 
-
     }
 
 
@@ -71,10 +69,9 @@ public class CustomAdapterDashboardCategory extends RecyclerView.Adapter<CustomA
         TextView textViewItemName;
 
 
-
         public ViewHolder(View view) {
             super(view);
-            textViewItemName=(TextView)view.findViewById(R.id.textView);
+            textViewItemName = (TextView) view.findViewById(R.id.textView);
             view.setOnClickListener(this);
             view.setOnLongClickListener(this);
 
@@ -83,19 +80,19 @@ public class CustomAdapterDashboardCategory extends RecyclerView.Adapter<CustomA
         @Override
         public void onClick(View view) {
 
-            tb.setTitle(category.get(getPosition()));
-            if(getPosition()==0){
+            tb.setText(category.get(getPosition()));
+            if (getPosition() == 0) {
+
                 ArrayList<SingleMenuPojo> l1 = new ArrayList<SingleMenuPojo>();
                 l1.addAll(menuPojo.getMessage().getPizza());
                 l1.addAll(menuPojo.getMessage().getSides());
-                customAdapterDashboardMenu = new CustomAdapterDashboardMenu(context,l1 );
+                customAdapterDashboardMenu = new CustomAdapterDashboardMenu(context, l1);
                 recyclerView.setAdapter(customAdapterDashboardMenu);
                 recyclerView.removeItemDecoration(headersDecor);
                 headersDecor = new StickyRecyclerHeadersDecoration(customAdapterDashboardMenu);
                 recyclerView.addItemDecoration(headersDecor);
                 customAdapterDashboardMenu.notifyDataSetChanged();
-            }
-            else if(getPosition()==1) {
+            } else if (getPosition() == 1) {
 
                 customAdapterDashboardMenu = new CustomAdapterDashboardMenu(context, menuPojo.getMessage().getPizza());
                 recyclerView.setAdapter(customAdapterDashboardMenu);
@@ -103,8 +100,7 @@ public class CustomAdapterDashboardCategory extends RecyclerView.Adapter<CustomA
                 headersDecor = new StickyRecyclerHeadersDecoration(customAdapterDashboardMenu);
                 recyclerView.addItemDecoration(headersDecor);
                 customAdapterDashboardMenu.notifyDataSetChanged();
-            }
-            else if(getPosition()==2) {
+            } else if (getPosition() == 2) {
 
                 customAdapterDashboardMenu = new CustomAdapterDashboardMenu(context, menuPojo.getMessage().getSides());
                 recyclerView.setAdapter(customAdapterDashboardMenu);
