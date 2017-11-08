@@ -48,6 +48,7 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.google.code.gson:gson:2.6.1'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    compile 'com.timehop.stickyheadersrecyclerview:library:0.4.3'
 
 
     testCompile 'junit:junit:4.12'

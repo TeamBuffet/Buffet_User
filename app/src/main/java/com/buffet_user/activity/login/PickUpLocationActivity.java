@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.buffet_user.R;
 import com.buffet_user.activity.BaseActivity;
+import com.buffet_user.activity.dashboard.DashboardActivity;
 import com.buffet_user.activity.review.BlogHomeActivity;
 import com.buffet_user.global.AppUtils;
 import com.buffet_user.pojo.VenueItems;
@@ -87,7 +88,7 @@ public class PickUpLocationActivity extends BaseActivity implements OnMapReadyCa
         Next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(obj.openActivity(PickUpLocationActivity.this,BlogHomeActivity.class));
+                startActivity(obj.openActivity(PickUpLocationActivity.this,DashboardActivity.class));
             }
         });
 

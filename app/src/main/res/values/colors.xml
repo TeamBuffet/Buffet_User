@@ -12,6 +12,7 @@
     <color name="grey">#eeeeee</color>
     <color name="black">#212121</color>
     <color name="light_green">#06D6A0</color>
+    <color name="lightwhite">#99FFFFFF</color>
     <color name="light_purple">#d9d0f5</color>
     <color name="darkgrey">#666666</color>
 </resources>

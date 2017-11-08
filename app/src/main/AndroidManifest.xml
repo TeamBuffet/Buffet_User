@@ -52,6 +52,9 @@
             android:name=".activity.review.PostFeedActivity"
             android:configChanges="screenSize|orientation"
             android:parentActivityName=".activity.review.BlogHomeActivity" />
+        <activity
+            android:name=".activity.dashboard.DashboardActivity"
+            android:configChanges="screenSize|orientation" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

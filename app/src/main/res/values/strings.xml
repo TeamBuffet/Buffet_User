@@ -10,5 +10,7 @@
     <string name="invalid_lat_long_used">Invalid Co-Ordinates</string>
     <string name="no_address_found">No Address Found</string>
     <string name="google_geo_key">AIzaSyD5hUFFt-t-BSdPn7HNS2-C-d2jBCShdQ0</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 
 </resources>
