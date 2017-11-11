@@ -44,7 +44,15 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name=".activity.DashboardActivity"></activity>
+        <activity android:name=".activity.DashboardActivity"/>
+        <activity
+            android:label="Customisation"
+            android:name=".activity.FullItemDetailActivity"
+            android:theme="@style/Theme.AppCompat.Light.Dialog.Alert">
+        </activity>
+
+        <activity android:name=".activity.CartActivity">
+        </activity>
     </application>
 
 </manifest>

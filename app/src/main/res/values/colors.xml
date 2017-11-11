@@ -14,4 +14,7 @@
     <color name="light_green">#06D6A0</color>
     <color name="Gray">#F5F5F5</color>
     <color name="lightwhite">#99FFFFFF</color>
+    <color name="topChoice">#000000</color>
+    <color name="toppingcheckboxcolor">#66BB6A</color>
+    <color name="extracheckboccolor">#FF8A80</color>
 </resources>

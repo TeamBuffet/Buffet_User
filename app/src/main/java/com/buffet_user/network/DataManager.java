@@ -4,11 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.buffet_user.activity.DashboardActivity;
-import com.buffet_user.pojo.MenuPojo;
-import com.buffet_user.pojo.SingleMenuPojo;
-
-import java.util.ArrayList;
+import com.buffet_user.pojo.getmenupojo.MenuPojo;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,9 +30,9 @@ public class DataManager {
         pDialog.setCancelable(false);
         pDialog.show();
         // show it
-        ApiClientGetData apiClientGetData;
-        apiClientGetData= ApiClientBase.getApiClient().create(ApiClientGetData.class);
-        Call<MenuPojo> call=apiClientGetData.getInfo();
+        ApiClientGetMenu apiClientGetMenu;
+        apiClientGetMenu = ApiClientBase.getApiClient().create(ApiClientGetMenu.class);
+        Call<MenuPojo> call= apiClientGetMenu.getInfo();
         call.enqueue(new Callback<MenuPojo>() {
             @Override
             public void onResponse(Call<MenuPojo> call, Response<MenuPojo> response) {
