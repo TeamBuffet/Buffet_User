@@ -10,15 +10,17 @@ import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.buffet_user.R;
+import com.buffet_user.activity.BaseActivity;
+import com.buffet_user.activity.cart.CartActivity;
 import com.buffet_user.adapter.CustomAdapterDashboardCategory;
 import com.buffet_user.adapter.CustomAdapterDashboardMenu;
 import com.buffet_user.pojo.MenuPojo;
@@ -34,7 +36,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DashboardActivity extends AppCompatActivity {
+public class DashboardActivity extends BaseActivity {
 
     private RecyclerView recyclerViewMenu, recyclerViewCategory;
     private MenuPojo menuPojo;
@@ -142,5 +144,24 @@ public class DashboardActivity extends AppCompatActivity {
         recyclerViewCategory.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         recyclerViewCategory.setAdapter(customAdapterDashboardCategory);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.toolbar_menu_home, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        if (id == R.id.cart) {
+            startActivity(openActivity(this, CartActivity.class));
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 
 }

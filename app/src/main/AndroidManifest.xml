@@ -55,6 +55,10 @@
         <activity
             android:name=".activity.dashboard.DashboardActivity"
             android:configChanges="screenSize|orientation" />
+        <activity
+            android:name=".activity.cart.CartActivity"
+            android:parentActivityName=".activity.dashboard.DashboardActivity"
+            android:label="Customize"/>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

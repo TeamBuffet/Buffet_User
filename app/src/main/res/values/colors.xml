@@ -15,4 +15,7 @@
     <color name="lightwhite">#99FFFFFF</color>
     <color name="light_purple">#d9d0f5</color>
     <color name="darkgrey">#666666</color>
+    <color name="topChoice">#000000</color>
+    <color name="toppingcheckboxcolor">#66BB6A</color>
+    <color name="extracheckboccolor">#FF8A80</color>
 </resources>

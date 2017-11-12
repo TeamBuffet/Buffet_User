@@ -6,17 +6,82 @@ package com.buffet_user.pojo;
 
 public class SingleMenuPojo {
 
-    private int id;
-    private int category_id;
+    private String id;
+    private String category_id;
     private String menu_name;
     private String price;
     private String size;
-    private int offer_id;
-    private int topping_count;
+    private String offer_id;
+    private String topping_count;
     private String image;
-    private int cat_id;
+    private String cat_id;
     private String category_name;
     private String sub_category_name;
+    private String isCustomisation;
+    private String extra_cheese_price;
+    private String extra_topping_price;
+    private String extra_cheese_burst_price;
+    private String extra_wheat_crust_price;
+    private String extra_italian_crust_price;
+    private String extra_pan_crush_price;
+
+
+    public String isCustomisation() {
+        return isCustomisation;
+    }
+
+    public void setCustomisation(String customisation) {
+        isCustomisation = customisation;
+    }
+
+    public String getExtra_cheese_price() {
+        return extra_cheese_price;
+    }
+
+    public void setExtra_cheese_price(String extra_cheese_price) {
+        this.extra_cheese_price = extra_cheese_price;
+    }
+
+    public String getExtra_topping_price() {
+        return extra_topping_price;
+    }
+
+    public void setExtra_topping_price(String extra_topping_price) {
+        this.extra_topping_price = extra_topping_price;
+    }
+
+    public String getExtra_cheese_burst_price() {
+        return extra_cheese_burst_price;
+    }
+
+    public void setExtra_cheese_burst_price(String extra_cheese_burst_price) {
+        this.extra_cheese_burst_price = extra_cheese_burst_price;
+    }
+
+    public String getExtra_wheat_crust_price() {
+        return extra_wheat_crust_price;
+    }
+
+    public void setExtra_wheat_crust_price(String extra_wheat_crust_price) {
+        this.extra_wheat_crust_price = extra_wheat_crust_price;
+    }
+
+    public String getExtra_italian_crust_price() {
+        return extra_italian_crust_price;
+    }
+
+    public void setExtra_italian_crust_price(String extra_italian_crust_price) {
+        this.extra_italian_crust_price = extra_italian_crust_price;
+    }
+
+    public String getExtra_pan_crush_price() {
+        return extra_pan_crush_price;
+    }
+
+    public void setExtra_pan_crush_price(String extra_pan_crush_price) {
+        this.extra_pan_crush_price = extra_pan_crush_price;
+    }
+
 
     public String getImage() {
         return image;
@@ -42,24 +107,24 @@ public class SingleMenuPojo {
         this.discount_price = discount_price;
     }
 
-    private int topping_id;
+    private String topping_id;
     private String topping_name;
     private String offer_details;
     private String discount_price;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public int getCategory_id() {
+    public String getCategory_id() {
         return category_id;
     }
 
-    public void setCategory_id(int category_id) {
+    public void setCategory_id(String category_id) {
         this.category_id = category_id;
     }
 
@@ -87,27 +152,27 @@ public class SingleMenuPojo {
         this.size = size;
     }
 
-    public int getOffer_id() {
+    public String getOffer_id() {
         return offer_id;
     }
 
-    public void setOffer_id(int offer_id) {
+    public void setOffer_id(String offer_id) {
         this.offer_id = offer_id;
     }
 
-    public int getTopping_count() {
+    public String getTopping_count() {
         return topping_count;
     }
 
-    public void setTopping_count(int topping_count) {
+    public void setTopping_count(String topping_count) {
         this.topping_count = topping_count;
     }
 
-    public int getCat_id() {
+    public String getCat_id() {
         return cat_id;
     }
 
-    public void setCat_id(int cat_id) {
+    public void setCat_id(String cat_id) {
         this.cat_id = cat_id;
     }
 
@@ -127,11 +192,11 @@ public class SingleMenuPojo {
         this.sub_category_name = sub_category_name;
     }
 
-    public int getTopping_id() {
+    public String getTopping_id() {
         return topping_id;
     }
 
-    public void setTopping_id(int topping_id) {
+    public void setTopping_id(String topping_id) {
         this.topping_id = topping_id;
     }
 
