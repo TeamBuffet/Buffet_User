@@ -37,8 +37,6 @@
                 android:layout_marginTop="10dp"
                 android:textSize="12sp"
                 android:paddingRight="50dp"
-                android:background="@drawable/recbound_removeitembutton"
-                android:drawableLeft="@mipmap/ic_delete_from_cart"
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/textViewExtras"
                 android:text="REMOVE" />
@@ -108,8 +106,7 @@
                 android:padding="5dp"
                 android:gravity="center"
                 android:layout_alignParentEnd="true"
-                android:layout_below="@+id/textViewPrice"
-                android:entries="@array/array_name" />
+                android:layout_below="@+id/textViewPrice" />
 
         </RelativeLayout>
     </LinearLayout>

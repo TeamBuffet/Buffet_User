@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.cloudinary.android.MediaManager;
+import com.google.android.gms.auth.api.credentials.HintRequest;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,7 +31,6 @@ public class BaseActivity extends AppCompatActivity {
         editor = sharedPreferences.edit();
         editor.putString("_user_gender", "male");
         editor.apply();
-
     }
 
     public void initCloudinary(){
