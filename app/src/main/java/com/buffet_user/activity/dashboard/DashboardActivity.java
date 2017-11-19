@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.buffet_user.R;
 import com.buffet_user.activity.BaseActivity;
 import com.buffet_user.activity.cart.CartActivity;
+import com.buffet_user.activity.review.BlogHomeActivity;
 import com.buffet_user.adapter.CustomAdapterDashboardCategory;
 import com.buffet_user.adapter.CustomAdapterDashboardMenu;
 import com.buffet_user.pojo.MenuPojo;
@@ -157,7 +158,7 @@ public class DashboardActivity extends BaseActivity {
         int id = item.getItemId();
 
         if (id == R.id.cart) {
-            startActivity(openActivity(this, CartActivity.class));
+            startActivity(openActivity(this, BlogHomeActivity.class));
         }
 
         return super.onOptionsItemSelected(item);

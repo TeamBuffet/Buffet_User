@@ -77,7 +77,7 @@ public class PostFeedActivity extends AppCompatActivity {
             public void onResponse(Call<PostFeedPOJO> call, Response<PostFeedPOJO> response) {
 
                 if (response.isSuccessful() && response.body().getError().equals("false")) {
-                    Toast.makeText(PostFeedActivity.this, "me" + response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PostFeedActivity.this, "" + response.body().getMessage(), Toast.LENGTH_SHORT).show();
                     Log.d("MainActivity", "posts loaded from API");
                 } else {
                     int statusCode = response.code();

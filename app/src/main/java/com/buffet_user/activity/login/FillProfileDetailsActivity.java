@@ -78,7 +78,7 @@ public class FillProfileDetailsActivity extends BaseActivity {
             gender = sharedPreferences.getString("gender", "");
             phonenumber = sharedPreferences.getString("phonenumber", "");
             avatar = sharedPreferences.getString("avatar", "");
-            if (avatar != null || avatar != "")
+            if (!avatar.equals(""))
                 Picasso.with(FillProfileDetailsActivity.this).load(avatar).into(profile);
             edtEmail.setText(email);
             edtName.setText(name);
