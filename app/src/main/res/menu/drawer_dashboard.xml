@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/feed"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/profile"
+            android:checked="false"
+            android:icon="@mipmap/ic_profile"
+            android:title="@string/profile" />
+
+        <item
+            android:id="@+id/blog"
+            android:checked="false"
+            android:icon="@mipmap/ic_blog"
+            android:title="@string/blog" />
+
+        <item
+            android:id="@+id/history"
+            android:checked="false"
+            android:icon="@mipmap/ic_history"
+            android:title="@string/History" />
+
+
+    </group>
+
+    <group
+        android:id="@+id/app"
+        android:checkableBehavior="single">
+
+
+        <item
+            android:id="@+id/contact_us"
+            android:icon="@mipmap/ic_call"
+            android:title="@string/contact_us" />
+
+        <item
+            android:id="@+id/rateus"
+            android:icon="@mipmap/ic_rate"
+            android:title="@string/rate" />
+
+        <item
+            android:id="@+id/privacy"
+            android:icon="@mipmap/ic_privacy"
+            android:title="@string/privacy" />
+
+        <item
+            android:id="@+id/logout"
+            android:icon="@mipmap/ic_logout"
+            android:title="@string/Logout" />
+
+
+    </group>
+
+
+</menu>

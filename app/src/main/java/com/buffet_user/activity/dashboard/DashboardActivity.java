@@ -5,7 +5,10 @@ package com.buffet_user.activity.dashboard;
  */
 
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -15,12 +18,13 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.buffet_user.R;
 import com.buffet_user.activity.BaseActivity;
-import com.buffet_user.activity.cart.CartActivity;
+import com.buffet_user.activity.login.IntroActivity;
 import com.buffet_user.activity.review.BlogHomeActivity;
 import com.buffet_user.adapter.CustomAdapterDashboardCategory;
 import com.buffet_user.adapter.CustomAdapterDashboardMenu;
@@ -74,9 +78,66 @@ public class DashboardActivity extends BaseActivity {
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigator);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
-
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
+        navigationView.setItemIconTintList(null);
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                if (prevItem != null)
+                    prevItem.setChecked(false);
+
+                menuItem.setCheckable(true);
+                menuItem.setChecked(true);
+
+                prevItem = menuItem;
+
+                drawer.closeDrawers();
+                switch (menuItem.getItemId()) {
+                    case R.id.profile:
+                        //  Intent intent = new Intent(DashboardActivity.this, ProfileActivity.class);
+                        //  startActivity(intent);
+                        return true;
+
+                    case R.id.blog:
+                        startActivity(openActivity(DashboardActivity.this, BlogHomeActivity.class));
+                        return true;
+
+                    case R.id.rateus:
+                        Uri uri = Uri.parse("market://details?id=" + "edu.smartbox");
+                        Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+                        goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                        try {
+                            startActivity(goToMarket);
+                        } catch (ActivityNotFoundException e) {
+                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + "edu.smartbox")));
+                        }
+                        return true;
+                    case R.id.contact_us:
+                    /*    Intent inte = new Intent(DashboardActivity.this, ContactUs.class);
+                        startActivity(inte);*/
+                        return true;
+                    case R.id.privacy:
+                        Intent i1 = new Intent(DashboardActivity.this, PrivacyPolicyActivity.class);
+                        startActivity(i1);
+
+                        return true;
+
+                    case R.id.logout:
+
+                        startActivity(openActivity(DashboardActivity.this, IntroActivity.class));
+
+                        return true;
+
+                    default:
+                        Toast.makeText(getApplicationContext(), "Somethings Wrong", Toast.LENGTH_SHORT).show();
+                        return true;
+
+                }
+            }
+        });
 
         toggle = new ActionBarDrawerToggle(this, drawer, tb, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
@@ -86,14 +147,6 @@ public class DashboardActivity extends BaseActivity {
 
         initMenu();
 
-  /*      DataManager dataManager=new DataManager(this);
-        menuPojo = dataManager.getDashboardData();
-        ArrayList<SingleMenuPojo> l1=new ArrayList<SingleMenuPojo>();
-        l1.addAll(menuPojo.getMessage().getPizza());
-        l1.addAll(menuPojo.getMessage().getSides());
-        loaddata(l1);
-        initCategoryList();
-*/
 
     }
 
@@ -158,11 +211,15 @@ public class DashboardActivity extends BaseActivity {
         int id = item.getItemId();
 
         if (id == R.id.cart) {
-            startActivity(openActivity(this, BlogHomeActivity.class));
+            //Cart Start
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 }

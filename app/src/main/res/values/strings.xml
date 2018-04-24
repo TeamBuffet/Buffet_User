@@ -12,5 +12,12 @@
     <string name="google_geo_key">AIzaSyD5hUFFt-t-BSdPn7HNS2-C-d2jBCShdQ0</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="History">History</string>
+    <string name="blog">Blog</string>
+    <string name="profile">Profile</string>
+    <string name="privacy">Privacy</string>
+    <string name="rate">Rate Us</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="Logout">Logout</string>
 
 </resources>

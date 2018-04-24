@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     android:orientation="vertical"
     tools:context="com.buffet_user.activity.dashboard.DashboardActivity">
@@ -58,6 +59,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="start"
+            app:headerLayout="@layout/header_dashboard_slider"
+            app:menu="@menu/drawer_dashboard"
             android:backgroundTint="@color/white">
 
         </android.support.design.widget.NavigationView>

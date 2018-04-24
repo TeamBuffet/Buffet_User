@@ -69,10 +69,10 @@
         <activity
             android:name=".activity.dashboard.DashboardActivity"
             android:configChanges="screenSize|orientation" />
-        <activity
-            android:name=".activity.cart.CartActivity"
+
+        <activity android:name=".activity.dashboard.PrivacyPolicyActivity"
             android:parentActivityName=".activity.dashboard.DashboardActivity"
-            android:label="Customize"/>
+            android:configChanges="screenSize|orientation|screenLayout"/>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
