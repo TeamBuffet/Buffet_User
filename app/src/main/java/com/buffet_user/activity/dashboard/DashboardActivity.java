@@ -16,6 +16,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,17 +26,27 @@ import android.widget.Toast;
 import com.buffet_user.R;
 import com.buffet_user.activity.BaseActivity;
 import com.buffet_user.activity.login.IntroActivity;
+import com.buffet_user.activity.login.LoginChooserActivity;
 import com.buffet_user.activity.review.BlogHomeActivity;
+import com.buffet_user.activity.review.PostFeedActivity;
 import com.buffet_user.adapter.CustomAdapterDashboardCategory;
 import com.buffet_user.adapter.CustomAdapterDashboardMenu;
+import com.buffet_user.pojo.LoginDataPOJO;
+import com.buffet_user.pojo.LoginPojo;
+import com.buffet_user.pojo.LoginSuperPojo;
 import com.buffet_user.pojo.MenuPojo;
+import com.buffet_user.pojo.PostFeedPOJO;
 import com.buffet_user.pojo.SingleMenuPojo;
 import com.buffet_user.retrofit.ApiUtils;
 import com.buffet_user.retrofit.SOService;
+import com.google.android.gms.maps.model.Dash;
 import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersDecoration;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -59,7 +70,6 @@ public class DashboardActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-
         getWindow().setStatusBarColor(Color.DKGRAY);
         mService = ApiUtils.getSOService();
         recyclerViewMenu = (RecyclerView) findViewById(R.id.recyclerViewMenu);
@@ -73,6 +83,9 @@ public class DashboardActivity extends BaseActivity {
         getSupportActionBar().setTitle("");
         txtToolbar = (TextView) tb.findViewById(R.id.toolbar_title);
         txtToolbar.setText("Recommended");
+        //Auth User
+        CheckAuth(sharedPreferences.getString("phonenumber",""));
+
         //drawer code
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigator);
@@ -127,8 +140,10 @@ public class DashboardActivity extends BaseActivity {
 
                     case R.id.logout:
 
-                        startActivity(openActivity(DashboardActivity.this, IntroActivity.class));
-
+                        Intent intent = new Intent(DashboardActivity.this, IntroActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
                         return true;
 
                     default:
@@ -146,6 +161,42 @@ public class DashboardActivity extends BaseActivity {
 
 
         initMenu();
+
+
+    }
+
+    private void CheckAuth(String phone) {
+
+        Date c = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+        String formattedDate = df.format(c);
+
+        LoginDataPOJO loginPojo = new LoginDataPOJO();
+        loginPojo.setTimestamp(formattedDate);
+        loginPojo.setUserid(phone);
+
+
+        mService.getLogin(loginPojo).enqueue(new Callback<LoginSuperPojo>() {
+            @Override
+            public void onResponse(Call<LoginSuperPojo> call, Response<LoginSuperPojo> response) {
+
+                if (response.isSuccessful() && response.body().getError().equals("false")) {
+                    Log.d("MainActivity", "Authenticated from API");
+                } else {
+                    int statusCode = response.code();
+                    // handle request errors depending on status code
+                    Toast.makeText(DashboardActivity.this, "Sorry, Login Again", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(DashboardActivity.this, LoginChooserActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                    Toast.makeText(DashboardActivity.this, "Error in hit", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LoginSuperPojo> call, Throwable t) {
+                Log.d("MainActivity", "error loading from API");
+
+            }
+        });
 
 
     }

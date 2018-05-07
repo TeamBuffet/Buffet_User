@@ -43,6 +43,7 @@ import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.Dash;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
@@ -84,21 +85,20 @@ public class PickUpLocationActivity extends BaseActivity implements OnMapReadyCa
         initialize();
         set_user_color();
         setUpMap();
-        final BaseActivity obj =new BaseActivity();
         Next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(obj.openActivity(PickUpLocationActivity.this,DashboardActivity.class));
+                Intent intent=new Intent(PickUpLocationActivity.this, DashboardActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
             }
         });
 
     }
 
     private void set_user_color() {
-
         Next.setBackgroundTintList(ColorStateList.valueOf(sharedPreferences.getString("user_gender", "Male").equals("Female") ? getResources().getColor(R.color.colorPrimaryDarkFemale) : getResources().getColor(R.color.colorPrimaryDark)));
-
-
     }
 
 
@@ -448,6 +448,8 @@ public class PickUpLocationActivity extends BaseActivity implements OnMapReadyCa
         }
     }
 
-
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }

@@ -5,11 +5,12 @@ package com.buffet_user.retrofit;
  */
 
 import com.buffet_user.pojo.BlogFeedPOJO;
-import com.buffet_user.pojo.CartinfoPojo;
+import com.buffet_user.pojo.LoginDataPOJO;
+import com.buffet_user.pojo.LoginPojo;
+import com.buffet_user.pojo.LoginSuperPojo;
 import com.buffet_user.pojo.MenuPojo;
 import com.buffet_user.pojo.PostFeedDataPOJO;
 import com.buffet_user.pojo.PostFeedPOJO;
-import com.buffet_user.pojo.UserPOJO;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -27,14 +28,10 @@ public interface SOService {
     @GET("/getallmenu")
     Call<MenuPojo> getallmenu();
 
-    @POST("/cart/getcartdata")
-    Call<CartinfoPojo> getItems(@Body UserPOJO user);
+    @GET("/filters")
+    Call<MenuPojo> getredmenu();
 
-
-    @POST("/cart/deletecartdata")
-    Call<String> deleteCartItems(@Body String id);
-
-    @POST("/cart/addtocartdata")
-    Call<Integer> addCartItems(@Body String id);
+    @POST("/auth")
+    Call<LoginSuperPojo> getLogin(@Body LoginDataPOJO data);
 
 }

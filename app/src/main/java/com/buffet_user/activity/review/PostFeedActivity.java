@@ -52,7 +52,6 @@ public class PostFeedActivity extends AppCompatActivity {
         Intent intent = getIntent();
         final String url = intent.getStringExtra("url");
         Picasso.with(PostFeedActivity.this).load(url).into(imgFeed);
-
         btnPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

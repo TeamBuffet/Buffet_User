@@ -5,73 +5,79 @@
     android:orientation="vertical">
 
     <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/home_layout_id"
-        >
-        <include android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            layout="@layout/toolbar">
-        </include>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include
+            layout="@layout/toolbar"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"></include>
 
 
     </FrameLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/recyclerViewCart"
-        android:layout_below="@id/home_layout_id"
-        android:layout_above="@+id/bottom_layout_id" />
+    <!--    <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/recyclerViewCart"
+            android:layout_below="@id/home_layout_id"
+            android:layout_above="@+id/bottom_layout_id" />-->
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/home_layout_id">
+
+        <include
+            android:id="@+id/item1"
+            layout="@layout/cart_items_list_layout" />
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
         android:id="@+id/bottom_layout_id"
-        android:background="@color/grey"
-        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_gravity="bottom"
+        android:background="@color/grey">
 
-        <TextView
-            android:paddingLeft="10dp"
-            android:layout_width="wrap_content"
-            android:textSize="40sp"
-            android:layout_height="wrap_content"
-            android:text="Total"
-            android:id="@+id/textView3"
-            android:layout_marginLeft="21dp"
-            android:layout_marginStart="39dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true" />
 
         <Button
+            android:id="@+id/continue_button_id"
             android:layout_width="120dp"
             android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="13dp"
+            android:layout_marginRight="13dp"
+            android:background="@color/light_green"
             android:padding="10dp"
             android:text="Continue"
             android:textColor="@color/white"
-            android:textStyle="bold"
-            android:id="@+id/continue_button_id"
-            android:background="#F4511E"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginRight="13dp"
-            android:layout_marginEnd="13dp" />
+            android:textStyle="bold" />
 
         <TextView
-            android:text="Rs. 50"
-            android:textSize="30sp"
-            android:textStyle="bold"
+            android:id="@+id/txtPrice"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="13dp"
+            android:layout_marginStart="13dp"
+            android:padding="10dp"
+            android:text="Rs. 50/-"
+            android:textAlignment="center"
             android:textColor="@color/black"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:id="@+id/total_textview_id"
-            android:layout_alignParentBottom="true"
-            android:layout_alignStart="@+id/textView3" />
+            android:textSize="28sp" />
+
 
     </RelativeLayout>
 

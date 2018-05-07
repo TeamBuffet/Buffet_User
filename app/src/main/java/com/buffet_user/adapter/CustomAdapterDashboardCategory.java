@@ -85,7 +85,7 @@ public class CustomAdapterDashboardCategory extends RecyclerView.Adapter<CustomA
 
                 ArrayList<SingleMenuPojo> l1 = new ArrayList<SingleMenuPojo>();
                 l1.addAll(menuPojo.getMessage().getPizza());
-                l1.addAll(menuPojo.getMessage().getSides());
+//                l1.addAll(menuPojo.getMessage().getSides());
                 customAdapterDashboardMenu = new CustomAdapterDashboardMenu(context, l1);
                 recyclerView.setAdapter(customAdapterDashboardMenu);
                 recyclerView.removeItemDecoration(headersDecor);
